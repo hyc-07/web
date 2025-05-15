@@ -1,28 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>web</title>
-  <style>
-      img{
-          border-radius:15px;
-          width:100px;
-          height:130px;
-      }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David专属空间</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            border-radius: 10px;
+            width: 120px;
+            height: 150px;
+            transition: transform 0.3s;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .nav-links {
+            margin-bottom: 30px;
+        }
+
+        .nav-links h4 {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #45a049;
+        }
+
+        .section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #f0f0f0;
+            border-radius: 10px;
+        }
+
+        .warning-container {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .warning {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            flex: 1;
+            padding: 0 20px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 0 0 15px 15px;
+            color: #999;
+        }
+
+        .image-group {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .image-group img {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
     </style>
 </head>
-<body style="background-color:Gray">
-  <div align="center">
-    <h1><img style="float:left" src="https://hyc-07.github.io/web/html/yj.png">website<img style="float:right" src="https://hyc-07.github.io/web/html/yj2.png"></h1>
-    <h2>created by hyc</h2>
-    <h4 align="center">点击进入</h4>
-    <p><a href="https://hyc-07.github.io/web/html/in2.html">视频1</a>&nbsp;&nbsp;<a href="https://hyc-07.github.io/web/html/in2_2.html">视频2</a>&nbsp;&nbsp;<a href="https://hyc-07.github.io/web/html/in2_3.html">视频3</a></p>
-    <p>带派不老铁？点击页面中的链接<br>跳转到东北雨姐的写真集</p>
-    <p><a href="https://image.baidu.com/search/index?tn=baiduimage&ps=1&ct=201326592&lm=-1&cl=2&nc=1&ie=utf-8&dyTabStr=MCwxMiwzLDEsMiwxMyw3LDYsNSw5&word=东北雨姐">跳转到东北雨姐写真集</a></p>
-    <p>这是一个为 David 精心打造的个性化空间，<br>汇集了丰富的资源和独特的内容</p>
-    <p><a href="https://hyc-07.github.io/web/html/David2.html">跳转到David</a></p>
-    <img style="float:left" src="https://hyc-07.github.io/web/html/pj.png"><img style="float:right" src="https://hyc-07.github.io/web/html/pj2.png">
-    <p style="text-align:center;">警告⚠️警告‼️未滿十八歲禁止進入此網站以免損害身心健康!</p>
-    <p style="text-align:center;">一切解释权归David所有</p>
-  </div>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="https://hyc-07.github.io/web/html/yj.png" alt="Logo">
+            </div>
+            <h1>David专属空间</h1>
+            <div class="logo">
+                <img src="https://hyc-07.github.io/web/html/yj2.png" alt="Logo">
+            </div>
+        </div>
+
+        <h2 class="creator">created by hyc</h2>
+
+        <div class="nav-links">
+            <h4>精选视频</h4>
+            <a href="https://hyc-07.github.io/web/html/in2.html">视频1</a>
+            <a href="https://hyc-07.github.io/web/html/in2_2.html">视频2</a>
+            <a href="https://hyc-07.github.io/web/html/in2_3.html">视频3</a>
+        </div>
+
+        <div class="section">
+            <h3>特色内容推荐</h3>
+            <p>带派不老铁？点击下方链接探索更多精彩：</p>
+            <a href="https://image.baidu.com/search/index?tn=baiduimage&ps=1&ct=201326592&lm=-1&cl=2&nc=1&ie=utf-8&dyTabStr=MCwxMiwzLDEsMiwxMyw3LDYsNSw5&word=东北雨姐" class="btn">东北雨姐写真集</a>
+        </div>
+
+        <div class="section">
+            <h3>关于David空间</h3>
+            <p>这是为David精心打造的个性化空间，汇集丰富资源与独特内容：</p>
+            <a href="https://hyc-07.github.io/web/html/David2.html" class="btn">进入David专属页面</a>
+        </div>
+
+        <div class="warning-container">
+            <img src="https://hyc-07.github.io/web/html/pj.png" alt="导师形象" style="width: 150px; height: 200px; border-radius: 15px;">
+            <div class="warning">
+                <p>⚠️ 警告 ‼️</p>
+                <p>未满十八歲禁止進入此網站，以免損害身心健康！</p>
+            </div>
+            <img src="https://hyc-07.github.io/web/html/pj2.png" alt="特色内容" style="width: 150px; height: 200px; border-radius: 15px;">
+        </div>
+
+        <div class="footer">
+            <p>一切解釋權歸David所有</p>
+            <p>Supported by David</p>
+        </div>
+    </div>
+</body>
+</html>
