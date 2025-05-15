@@ -1,45 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>David.com</title>
+    <title>David空间</title>
     <style>
-        #h {
-            background-color:DimGray;
-            border-radius:25px;
-            border: 2px solid DimGray;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
         }
-        #a{
-            background-color:DimGray
+
+        body {
+            background-color: #e0e0e0;
+            line-height: 1.6;
         }
-        img{
-            border-radius:15px;
-            width:90px;
-            height:120px;
+
+        .header {
+            background-color: #696969; /* 深灰色 */
+            border-radius: 20px;
+            margin: 20px;
+            padding: 25px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .sponsor {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 30px 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+        }
+
+        .sponsor img {
+            width: 100px;
+            height: 130px;
+            border-radius: 10px;
+        }
+
+        .route-list {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .route-list a {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #4CAF50; /* 绿色按钮 */
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .route-list a:hover {
+            background-color: #45a049;
+        }
+
+        .warning {
+            background-color: #ffcccc; /* 浅红色背景 */
+            margin: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            color: red;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            margin: 20px;
+            color: #666;
+        }
+
+        .button {
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .button a {
+            background-color: #ffd700; /* 金色按钮 */
+            color: black;
+            padding: 8px 20px;
+            border-radius: 18px;
+            text-decoration: none;
+            margin: 0 5px;
         }
     </style>
 </head>
-<body style="background-color:Gray">
-    <div id="h" style="text-align:center">
+<body>
+    <!-- 头部区域 -->
+    <div class="header">
         <h1>welcome</h1>
         <h2>Supported by David</h2>
         <h3>created by hyc</h3>
     </div>
-    <p style="text-align:center;">本電影由David公司特別播出此網站僅供參考*請勿用於其他用途千年大卫在線發牌請選擇路線^*</p>
-    <h3 style="text-align:center;"><img style="float:left" src="https://hyc-07.github.io/web/html/David.jpg">芒果🥭独家赞助<img src="https://hyc-07.github.io/web/html/zj2.jpg" style="float:right"></h3>
-    <h5 align="center">line/路线</h5>
-    <h5 align="center"><a href="https://hyc-07.github.io/web/html/in2.html">line1/路線1 順暢*</a></h5>
-    <h5 align="center"><a href="https://hyc-07.github.io/web/html/in2_2.html">line2/路線2 順暢*</a></h5>
-    <h5 align="center"><a href="https://hyc-07.github.io/web/html/in2_3.html">line3/路線3 順暢*</a></h5>
-    <p style="text-align:center;">如果𣎴能連接或不能載圖，請嘗試切換路線* 此網站為境外網站Hong Kong🇭🇰 Macao🇲🇴</p>
-    <div id="a">
-        <p style="text-align:center;">警告⚠️警告‼️未滿十八歲禁止進入此網站以免損害身心健康!</p>
-        <p style="text-align:center;">Warning,individuals under the age of 18 are prohibited from accessing this website to avoid damaging their physical and mental health! </p>
+
+    <!-- 赞助图片区域 -->
+    <div class="sponsor">
+        <img src="https://hyc-07.github.io/web/html/David.jpg" alt="赞助图片1">
+        <h3>芒果🥭独家赞助</h3>
+        <img src="https://hyc-07.github.io/web/html/zj2.jpg" alt="赞助图片2">
     </div>
-    <p style="text-align:center;"><a style="background-color:yellow" href="https://hyc-07.github.io/web/html/会员.html">会员名单</a></p>
-    <p style="text-align:center;"><a style="background-color:yellow" href="https://hyc-07.github.io/web/html/David.html">返回</a></p>
-    <p style="text-align:center;">進入前請仔細閱讀以上條例*</p>
-    <p style="text-align:center;">一切解释权归David所有</p>
+
+    <!-- 路线导航 -->
+    <div class="route-list">
+        <h4>line/路线</h4>
+        <a href="https://hyc-07.github.io/web/html/in2.html">line1/路線1 順暢*</a>
+        <a href="https://hyc-07.github.io/web/html/in2_2.html">line2/路線2 順暢*</a>
+        <a href="https://hyc-07.github.io/web/html/in2_3.html">line3/路線3 順暢*</a>
+    </div>
+
+    <!-- 功能按钮 -->
+    <div class="button">
+        <a href="https://hyc-07.github.io/web/html/会员.html">会员名单</a>
+        <a href="https://hyc-07.github.io/web/html/David.html">返回</a>
+    </div>
+    
+     <!-- 警告信息 -->
+    <div class="warning">
+        <p>⚠️ 警告 ‼️</p>
+        <p>未滿十八歲禁止進入此網站，以免損害身心健康！</p>
+        <p>Warning, individuals under the age of 18 are prohibited from accessing this website.</p>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+        <p>本網站僅供參考*請勿用於其他用途</p>
+        <p>進入前請仔細閱讀以上條例*</p>
+        <p>一切解釋權歸David所有</p>
+        <p>此網站為境外網站 Hong Kong🇭🇰 Macao🇲🇴</p>
+    </div>
+   
 </body>
 </html>
