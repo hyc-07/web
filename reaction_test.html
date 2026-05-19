@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>反应速度测试</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{
+            height:100vh;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            font-family:微软雅黑;
+            background:#f5f5f5;
+        }
+        #box{
+            width:80%;
+            max-width:500px;
+            height:350px;
+            background:#3474e6;
+            border-radius:16px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color:#fff;
+            font-size:28px;
+            cursor:pointer;
+            transition:background 0.2s;
+        }
+        .info{
+    			margin-top:20px;
+    			width:300px;
+    			height:60px;
+    			text-align:center;
+    			font-size:20px;
+    			color:#333;
+    			display:flex;
+    			flex-direction:column;
+    			justify-content:center;
+		}
+    </style>
+</head>
+<body>
+    <div id="box">点击此处开始测试-hyc</div>
+    <div class="info">
+    		<div>你的成绩: <span id="res"> -- </span> ms</div>
+    		<div id="level"></div>
+	</div>
+
+<script>
+let start = 0;
+let isWait = false;
+let isStart = false;
+let timer = null; 
+let isError = false;
+const box = document.getElementById('box');
+const res = document.getElementById('res');
+const level = document.getElementById('level');
+
+box.addEventListener('click',function(){
+    // 违规状态 点击直接重置
+    if(isError){
+        box.style.background = '#3474e6';
+        box.innerText='点击重新开始';
+        isStart = false;
+        isError = false;
+        return;
+    }
+
+    if(!isStart){
+        beginTest()
+        return
+    }
+
+    if(!isWait){
+        clearTimeout(timer);
+        box.style.background = '#ff4444';
+        box.innerText = '违规提前点击！';
+        isError = true;
+        return;
+    }
+
+	let end = performance.now()
+    let time = Math.round(end-start);
+    res.innerText = time;
+
+    if(time < 150){
+        level.innerText = " 🔥 顶级反应";
+    }else if(time < 200){
+        level.innerText = " ⚡ 非常优秀";
+    }else if(time < 280){
+        level.innerText = " ✅ 正常水准";
+    }else if(time < 380){
+        level.innerText = " 😐 偏慢一点";
+    }else{
+        level.innerText = " 🐢 继续练习";
+    }
+
+    box.innerText = `用时 ${time} ms`;
+    isWait = false;
+    isStart = false;
+    isError = false;
+})
+
+function beginTest(){
+    isStart = true;
+    res.innerText = ' -- ';
+    level.innerText = '';
+    box.style.background = '#3474e6';
+    box.innerText = '等待变色…';
+    isWait = false;
+    isError = false;
+
+    let delay = Math.random() * 2000 + 1000;
+    timer = setTimeout(()=>{
+        box.style.background = '#4CAF50';
+        box.innerText = '立刻点击!';
+        start = performance.now()
+        isWait = true;
+    },delay)
+}
+</script>
+</body>
+</html>
