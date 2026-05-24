@@ -15,10 +15,21 @@
         body {
             background-color: #e0e0e0;
             line-height: 1.6;
+            padding: 10px 0;
+        }
+        /* 白底圆角卡面容器 */
+        .wrap{
+            max-width: 700px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 20px;
+            min-height: 100vh;
+            box-shadow: 0 0 12px rgba(0,0,0,0.08);
+            overflow: hidden;
         }
 
         .header {
-            background-color: #696969; /* 深灰色 */
+            background-color: #696969;
             border-radius: 20px;
             margin: 20px;
             padding: 25px;
@@ -33,7 +44,7 @@
             align-items: center;
             margin: 30px 20px;
             padding: 20px;
-            background-color: white;
+            background-color: #e0e0e0;
             border-radius: 15px;
         }
 
@@ -51,7 +62,7 @@
         .route-list a {
             display: inline-block;
             padding: 10px 25px;
-            background-color: #4CAF50; /* 绿色按钮 */
+            background-color: #4CAF50;
             color: white;
             text-decoration: none;
             border-radius: 25px;
@@ -64,7 +75,7 @@
         }
 
         .warning {
-            background-color: #ffcccc; /* 浅红色背景 */
+            background-color: #ffcccc;
             margin: 20px;
             padding: 15px;
             border-radius: 10px;
@@ -84,7 +95,7 @@
         }
 
         .button a {
-            background-color: #ffd700; /* 金色按钮 */
+            background-color: #ffd700;
             color: black;
             padding: 8px 20px;
             border-radius: 18px;
@@ -94,48 +105,44 @@
     </style>
 </head>
 <body>
-    <!-- 头部区域 -->
-    <div class="header">
-        <h1>welcome</h1>
-        <h2>Supported by David</h2>
-        <h3>created by hyc</h3>
-    </div>
+    <div class="wrap">
+        <div class="header">
+            <h1>welcome</h1>
+            <h2>Supported by David</h2>
+            <h3>created by hyc</h3>
+        </div>
 
-    <!-- 赞助图片区域 -->
-    <div class="sponsor">
-        <img src="David.jpg" alt="赞助图片1">
-        <h3>芒果🥭独家赞助</h3>
-        <img src="zj2.jpg" alt="赞助图片2">
-    </div>
+        <div class="sponsor">
+            <img src="David.jpg" alt="赞助图片1">
+            <h3>芒果🥭独家赞助</h3>
+            <img src="zj2.jpg" alt="赞助图片2">
+        </div>
 
-    <!-- 路线导航 -->
-    <div class="route-list">
-        <h4>line/路线</h4>
-        <a href="in2.html">line1/路線1 順暢*</a>
-        <a href="in2_2.html">line2/路線2 順暢*</a>
-        <a href="in2_3.html">line3/路線3 順暢*</a>
-    </div>
+        <div class="route-list">
+            <h4>line/路线</h4>
+            <a href="in2_1.html">line1/路線1</a>
+            <a href="in2_2.html">line2/路線2</a>
+            <a href="in2_3.html">line3/路線3</a>
+            <a href="in2_4.html">line3/路線4</a>
+        </div>
 
-    <!-- 功能按钮 -->
-    <div class="button">
-        <a href="会员.html">会员名单</a>
-        <a href="index.html">返回</a>
-    </div>
-    
-     <!-- 警告信息 -->
-    <div class="warning">
-        <p>⚠️ 警告 ‼️</p>
-        <p>未滿十八歲禁止進入此網站，以免損害身心健康！</p>
-        <p>Warning, individuals under the age of 18 are prohibited from accessing this website.</p>
-    </div>
+        <div class="button">
+            <a href="会员.html">会员名单</a>
+            <a href="index.html">返回</a>
+        </div>
+        
+        <div class="warning">
+            <p>⚠️ 警告 ‼️</p>
+            <p>未滿十八歲禁止進入此網站，以免損害身心健康！</p>
+            <p>Warning, individuals under the age of 18 are prohibited from accessing this website.</p>
+        </div>
 
-    <!-- 页脚 -->
-    <div class="footer">
-        <p>本網站僅供參考*請勿用於其他用途</p>
-        <p>進入前請仔細閱讀以上條例*</p>
-        <p>一切解釋權歸David所有</p>
-        <p>此網站為境外網站 Hong Kong🇭🇰 Macao🇲🇴</p>
+        <div class="footer">
+            <p>本網站僅供參考*請勿用於其他用途</p>
+            <p>進入前請仔細閱讀以上條例*</p>
+            <p>一切解釋權歸David所有</p>
+            <p>此網站為境外網站 Hong Kong🇭🇰 Macao🇲🇴</p>
+        </div>
     </div>
-   
 </body>
 </html>
