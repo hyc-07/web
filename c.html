@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机抽取器</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-family:微软雅黑;
+            background:#f5f5f5;
+        }
+        .container{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            gap:20px;
+        }
+        #box{
+            width:500px;
+            height:350px;
+            background:#3474e6;
+            border-radius:16px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color:#fff;
+            font-size:28px;
+            cursor:pointer;
+            transition:background 0.2s;
+            text-align: center;
+            padding: 20px;
+        }
+        .info{
+            width:500px;
+            font-size:20px;
+            color:#333;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            height:36px;
+        }
+        .exit{
+            padding:8px 24px;
+            font-size:16px;
+            color:#fff;
+            background:#ff4444;
+            border-radius:30px;
+            text-decoration:none;
+            font-weight:bold;
+            white-space:nowrap;
+        }
+        .exit:hover{
+            background:#cc0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="box">点击此处开始抽取</div>
+        <div class="info">
+            <div>抽取结果: <span id="res"> -- </span></div>
+            <a href="index.html" class="exit">返回首页</a>
+        </div>
+    </div>
+
+<script>
+const box = document.getElementById('box');
+const res = document.getElementById('res');
+// 自定义名单
+const list = ["数量正在研发","酸碱盐在远方","这是抢修人员","我们气氛活跃","显然很吸引人","会议通知之日","显然很直接","会员充值信仰","中考完才恍然","刘耀文连体裤","列车员在国外","薄荷在雪原","评价最高的","爷爷要打张健","列车员旅游局"];
+let rollTimer = null;
+let isRolling = false;
+// 记录上一个名字，防止重复
+let prevName = "";
+
+box.addEventListener('click', function(){
+    if(isRolling) return;
+
+    isRolling = true;
+    res.innerText = "--";
+    // 滚动时保持蓝色背景
+    box.style.background = '#3474e6';
+    let count = 0;
+    const totalRoll = 26;
+    const speed = 72;
+
+    rollTimer = setInterval(() => {
+        let randomIdx;
+        let currentName;
+        // 循环获取 和上一个不重复的名字
+        do {
+            randomIdx = Math.floor(Math.random() * list.length);
+            currentName = list[randomIdx];
+        } while (currentName === prevName);
+
+        prevName = currentName;
+        box.innerText = currentName;
+        count++;
+
+        if(count >= totalRoll){
+            clearInterval(rollTimer);
+            // 最终结果
+            let finalIdx = Math.floor(Math.random() * list.length);
+            let finalName = list[finalIdx];
+            box.innerText = finalName;
+            res.innerText = finalName;
+            // 抽取完成 背景变绿色（和反应测试一致）
+            box.style.background = '#4CAF50';
+            isRolling = false;
+            prevName = "";
+        }
+    }, speed);
+})
+</script>
+</body>
+</html>
