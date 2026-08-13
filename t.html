@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Notification Demo</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 40px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>网页消息通知 Demo</h2>
+<button id="notifyBtn">发送通知</button>
+
+<script>
+    const btn = document.getElementById('notifyBtn');
+
+    // 检查浏览器是否支持 Notification
+    if (!('Notification' in window)) {
+        alert('当前浏览器不支持桌面通知');
+    }
+
+    // 请求通知权限
+    Notification.requestPermission();
+
+    btn.addEventListener('click', () => {
+        if (Notification.permission === 'granted') {
+            const notification = new Notification('你好 👋', {
+                body: '这是一条网页消息通知示例',
+                icon: 'https://cdn-icons-png.flaticon.com/512/1827/1827343.png',
+                tag: 'demo-notification'
+            });
+
+            // 点击通知时的行为
+            notification.onclick = () => {
+                window.focus();
+                notification.close();
+                alert('你点击了通知');
+            };
+        } else {
+            alert('请先允许通知权限');
+        }
+    });
+</script>
+
+</body>
+</html>
