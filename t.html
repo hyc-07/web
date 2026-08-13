@@ -1,147 +1,16 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Push Notification Demo</title>
-<style>
-  body { font-family: sans-serif; padding: 20px; max-width: 500px; margin: 0 auto; }
-  button { display: block; width: 100%; padding: 16px; font-size: 18px; margin: 12px 0; border: none; border-radius: 8px; background: #007bff; color: white; cursor: pointer; }
-  button:active { background: #0056b3; }
-  #status { margin-top: 20px; padding: 12px; background: #f5f5f5; border-radius: 8px; font-size: 14px; word-break: break-all; }
-</style>
+<title>通知测试</title>
 </head>
 <body>
-
-<h2>Push 通知 Demo</h2>
-<p>设备: <span id="device"></span></p>
-<button id="btn-subscribe">1. 订阅推送</button>
-<button id="btn-push">2. 发送推送</button>
-<div id="status">等待操作...</div>
-
+<button onclick="go()">点我弹通知</button>
 <script>
-const statusEl = document.getElementById('status');
-const deviceEl = document.getElementById('device');
-
-// 检测设备
-deviceEl.textContent = /Mobile|Android|iPhone/i.test(navigator.userAgent) ? '📱 手机' : '💻 电脑';
-
-function log(msg) {
-  statusEl.textContent = msg;
-  console.log(msg);
-}
-
-// VAPID 公钥（运行一次 server 后替换这里）
-const VAPID_PUBLIC = 'BEl62iUYgUivxIkv69yViEuiBIa-Ib9-S-jL9XmHOn9Kzkq6dA6Y7k0Xw8gK9K9K9K9K9K9K9K9K9K9K9K9K9K';
-
-let swRegistration = null;
-
-// 注册 Service Worker
-async function registerSW() {
-  if (!('serviceWorker' in navigator)) {
-    throw new Error('浏览器不支持 Service Worker');
-  }
-  swRegistration = await navigator.serviceWorker.register('?sw=1');
-  log('✅ Service Worker 注册成功');
-  return swRegistration;
-}
-
-// 订阅
-async function subscribe() {
-  const registration = swRegistration || await registerSW();
-  const subscription = await registration.pushManager.subscribe({
-    userVisibleOnly: true,
-    applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC)
-  });
-  log('✅ 订阅成功！\n' + JSON.stringify(subscription));
-  // 发给服务器保存
-  await fetch('/subscribe', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(subscription)
-  });
-  log('✅ 订阅已保存到服务器');
-}
-
-// 触发推送
-async function triggerPush() {
-  log('发送推送请求...');
-  const res = await fetch('/send-push', { method: 'POST' });
-  const data = await res.json();
-  log('📨 ' + data.message);
-}
-
-function urlBase64ToUint8Array(base64String) {
-  const padding = '='.repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
-  const rawData = atob(base64);
-  return Uint8Array.from([...rawData].map(c => c.charCodeAt(0)));
-}
-
-document.getElementById('btn-subscribe').onclick = () => subscribe().catch(e => log('❌ ' + e.message));
-document.getElementById('btn-push').onclick = triggerPush;
-
-// Service Worker 脚本（通过 URL 参数 ?sw=1 返回）
-if (location.search === '?sw=1') {
-  // 这个文件同时充当 Service Worker
-  // 用 Blob 方式注册
+function go() {
+  new Notification('你好', { body: '手机通知成功了！' });
 }
 </script>
-
-<script id="sw-code" type="text/worker">
-self.addEventListener('push', event => {
-  const data = event.data ? event.data.json() : {};
-  event.waitUntil(
-    self.registration.showNotification(data.title || '新消息', {
-      body: data.body || '你有一条新消息',
-      icon: 'https://cdn-icons-png.flaticon.com/512/1827/1827343.png',
-      badge: 'https://cdn-icons-png.flaticon.com/512/1827/1827343.png',
-      tag: 'demo'
-    })
-  );
-});
-
-self.addEventListener('notificationclick', event => {
-  event.notification.close();
-  event.waitUntil(clients.openWindow('/'));
-});
-</script>
-
-<script>
-// 用 Blob 把 Service Worker 代码从页面里抽出来
-if (location.search !== '?sw=1') {
-  const swCode = document.getElementById('sw-code').textContent;
-  const blob = new Blob([swCode], { type: 'application/javascript' });
-  const swUrl = URL.createObjectURL(blob);
-  
-  // 覆盖注册逻辑，用 Blob URL
-  document.getElementById('btn-subscribe').onclick = async () => {
-    try {
-      if (!('serviceWorker' in navigator)) {
-        log('❌ 浏览器不支持 Service Worker');
-        return;
-      }
-      swRegistration = await navigator.serviceWorker.register(swUrl);
-      log('✅ Service Worker 注册成功');
-      
-      const subscription = await swRegistration.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC)
-      });
-      log('✅ 订阅成功！');
-      
-      await fetch('/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(subscription)
-      });
-      log('✅ 已保存到服务器，现在可以点"发送推送"了');
-    } catch(e) {
-      log('❌ ' + e.message);
-    }
-  };
-}
-</script>
-
 </body>
 </html>
