@@ -1,20 +1,10 @@
 <!DOCTYPE html>
 <html>
 <body>
-<button onclick="test()">点我测试</button>
+<button onclick="show()">点我</button>
 <script>
-function test() {
-  alert('按钮能点到，权限是：' + Notification.permission);
-  if (Notification.permission === 'granted') {
-    new Notification('成功', {body: '通知弹出来了！'});
-  } else {
-    Notification.requestPermission().then(p => {
-      alert('权限变成了：' + p);
-      if (p === 'granted') {
-        new Notification('成功', {body: '通知弹出来了！'});
-      }
-    });
-  }
+function show() {
+  new Notification('成功', {body: '你看到了吗？'});
 }
 </script>
 </body>
